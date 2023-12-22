@@ -5,13 +5,13 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/require"
-	"github.com/terra-money/core/v2/app"
+	"github.com/fury-money/core/v2/app"
 )
 
 func TestGenesis(t *testing.T) {
 	encCfg := app.MakeEncodingConfig()
 	genesisState := app.NewDefaultGenesisState(encCfg.Marshaler)
-	genesisState.SetDefaultTerraConfig(encCfg.Marshaler)
+	genesisState.SetDefaultFuryaConfig(encCfg.Marshaler)
 
 	jsonGenState, err := json.Marshal(genesisState)
 	require.Nil(t, err)

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BINARY=terrad
+BINARY=furyad
 CHAIN_DIR=$(pwd)/src/test-data
 CHAINID_1=test-1
 CHAINID_2=test-2
@@ -52,8 +52,8 @@ echo "Removing previous data..."
 rm -rf $CHAIN_DIR
 
 echo "Stopping any processes related with the tests..."
-pkill terrad
-pkill terrad
+pkill furyad
+pkill furyad
 pkill relayer
 
 # Add directories for both chains, exit if an error occurs

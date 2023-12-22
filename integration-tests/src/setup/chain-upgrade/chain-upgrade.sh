@@ -11,23 +11,23 @@ GOV_PERIOD="5s"
 VAL_MNEMONIC_1="clock post desk civil pottery foster expand merit dash seminar song memory figure uniform spice circle try happy obvious trash crime hybrid hood cushion"
 WALLET_MNEMONIC_1="banner spread envelope side kite person disagree path silver will brother under couch edit food venture squirrel civil budget number acquire point work mass"
 
-export OLD_BINARY=$CHAIN_HOME/terrad_old
-export NEW_BINARY=$CHAIN_HOME/terrad_new
+export OLD_BINARY=$CHAIN_HOME/furyad_old
+export NEW_BINARY=$CHAIN_HOME/furyad_new
 
-rm -rf /tmp/terra
+rm -rf /tmp/furya
 rm -r $CHAIN_HOME
 mkdir $CHAIN_HOME
 
 # install old binary
 if ! command -v $OLD_BINARY &> /dev/null
 then
-    mkdir -p /tmp/terra
-    cd /tmp/terra
-    git clone https://github.com/terra-money/core
+    mkdir -p /tmp/furya
+    cd /tmp/furya
+    git clone https://github.com/fury-money/core
     cd core
     git checkout $OLD_VERSION
     make build
-    cp /tmp/terra/core/build/terrad $CHAIN_HOME/terrad_old
+    cp /tmp/furya/core/build/furyad $CHAIN_HOME/furyad_old
     cd $CHAIN_HOME
 fi
 
@@ -36,7 +36,7 @@ if ! command -v $NEW_BINARY &> /dev/null
 then
   cd ../..
   make build
-  cp build/terrad $NEW_BINARY
+  cp build/furyad $NEW_BINARY
 fi
 
 # init genesis
@@ -88,7 +88,7 @@ echo '{
   "metadata": "",
   "deposit": "550000000'$DENOM'",
   "title": "Upgrade to '$SOFTWARE_UPGRADE_NAME'",
-  "summary": "Source Code Version https://github.com/terra-money/core"
+  "summary": "Source Code Version https://github.com/fury-money/core"
 }' > $CHAIN_HOME/software-upgrade.json
 
 #
@@ -100,9 +100,9 @@ $OLD_BINARY tx gov vote 1 yes --from val1 --keyring-backend test --chain-id $CHA
 while true; do
     BLOCK_HEIGHT=$($OLD_BINARY status | jq '.SyncInfo.latest_block_height' -r)
     if [ $BLOCK_HEIGHT = "$UPGRADE_HEIGHT" ]; then
-        # assuming running only 1 terrad
+        # assuming running only 1 furyad
         echo "BLOCK HEIGHT = $UPGRADE_HEIGHT REACHED, STOPPING OLD ONE"
-        pkill terrad_old
+        pkill furyad_old
         break
     else
         $OLD_BINARY query gov proposal 1 --output=json | jq ".status"

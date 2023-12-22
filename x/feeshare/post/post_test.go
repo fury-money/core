@@ -12,11 +12,11 @@ import (
 
 	wasmtypes "github.com/CosmWasm/wasmd/x/wasm/types"
 	abci "github.com/cometbft/cometbft/abci/types"
-	app "github.com/terra-money/core/v2/app/app_test"
-	"github.com/terra-money/core/v2/app/post/mocks"
-	post "github.com/terra-money/core/v2/x/feeshare/post"
-	"github.com/terra-money/core/v2/x/feeshare/types"
-	customwasmtypes "github.com/terra-money/core/v2/x/wasm/types"
+	app "github.com/fury-money/core/v2/app/app_test"
+	"github.com/fury-money/core/v2/app/post/mocks"
+	post "github.com/fury-money/core/v2/x/feeshare/post"
+	"github.com/fury-money/core/v2/x/feeshare/types"
+	customwasmtypes "github.com/fury-money/core/v2/x/wasm/types"
 )
 
 type AnteTestSuite struct {
@@ -32,12 +32,12 @@ func (suite *AnteTestSuite) TestGetWithdrawalAddressFromContract() {
 
 	feeshareKeeper := suite.AppTestSuite.App.Keepers.FeeShareKeeper
 	feeshareKeeper.SetFeeShare(suite.Ctx, types.FeeShare{
-		ContractAddress:   "terra1jwyzzsaag4t0evnuukc35ysyrx9arzdde2kg9cld28alhjurtthq0prs2s",
+		ContractAddress:   "furya1jwyzzsaag4t0evnuukc35ysyrx9arzdde2kg9cld28alhjurtthq0prs2s",
 		DeployerAddress:   "",
-		WithdrawerAddress: "terra1zdpgj8am5nqqvht927k3etljyl6a52kwqup0je",
+		WithdrawerAddress: "furya1zdpgj8am5nqqvht927k3etljyl6a52kwqup0je",
 	})
 	feeshareKeeper.SetFeeShare(suite.Ctx, types.FeeShare{
-		ContractAddress:   "terra1mdpvgjc8jmv60a4x68nggsh9w8uyv69sqls04a76m9med5hsqmwsse8sxa",
+		ContractAddress:   "furya1mdpvgjc8jmv60a4x68nggsh9w8uyv69sqls04a76m9med5hsqmwsse8sxa",
 		DeployerAddress:   "",
 		WithdrawerAddress: "",
 	})
@@ -50,26 +50,26 @@ func (suite *AnteTestSuite) TestGetWithdrawalAddressFromContract() {
 	}{
 		{
 			"valid contract addresses",
-			[]string{"terra1jwyzzsaag4t0evnuukc35ysyrx9arzdde2kg9cld28alhjurtthq0prs2s"},
+			[]string{"furya1jwyzzsaag4t0evnuukc35ysyrx9arzdde2kg9cld28alhjurtthq0prs2s"},
 			[]sdk.AccAddress{
-				sdk.MustAccAddressFromBech32("terra1zdpgj8am5nqqvht927k3etljyl6a52kwqup0je"),
+				sdk.MustAccAddressFromBech32("furya1zdpgj8am5nqqvht927k3etljyl6a52kwqup0je"),
 			},
 			false,
 		},
 		{
 			"two valid contract addresses with one not registered",
 			[]string{
-				"terra1u3z42fpctuhh8mranz4tatacqhty6a8yk7l5wvj7dshsuytcms2qda4f5x", // not registered address
-				"terra1jwyzzsaag4t0evnuukc35ysyrx9arzdde2kg9cld28alhjurtthq0prs2s",
+				"furya1u3z42fpctuhh8mranz4tatacqhty6a8yk7l5wvj7dshsuytcms2qda4f5x", // not registered address
+				"furya1jwyzzsaag4t0evnuukc35ysyrx9arzdde2kg9cld28alhjurtthq0prs2s",
 			},
 			[]sdk.AccAddress{
-				sdk.MustAccAddressFromBech32("terra1zdpgj8am5nqqvht927k3etljyl6a52kwqup0je"),
+				sdk.MustAccAddressFromBech32("furya1zdpgj8am5nqqvht927k3etljyl6a52kwqup0je"),
 			},
 			false,
 		},
 		{
 			"without withdrawer contract addresses",
-			[]string{"terra1mdpvgjc8jmv60a4x68nggsh9w8uyv69sqls04a76m9med5hsqmwsse8sxa"},
+			[]string{"furya1mdpvgjc8jmv60a4x68nggsh9w8uyv69sqls04a76m9med5hsqmwsse8sxa"},
 			[]sdk.AccAddress(nil),
 			false,
 		},
@@ -206,13 +206,13 @@ func (suite *AnteTestSuite) TestPostHandler() {
 
 	// Register the feeshare contract...
 	suite.App.Keepers.FeeShareKeeper.SetFeeShare(suite.Ctx, types.FeeShare{
-		ContractAddress:   "terra1mdpvgjc8jmv60a4x68nggsh9w8uyv69sqls04a76m9med5hsqmwsse8sxa",
+		ContractAddress:   "furya1mdpvgjc8jmv60a4x68nggsh9w8uyv69sqls04a76m9med5hsqmwsse8sxa",
 		DeployerAddress:   "",
-		WithdrawerAddress: "terra1zdpgj8am5nqqvht927k3etljyl6a52kwqup0je",
+		WithdrawerAddress: "furya1zdpgj8am5nqqvht927k3etljyl6a52kwqup0je",
 	})
 	// ... append the executed contract addresses in the wasm keeper ...
 	suite.App.Keepers.WasmKeeper.SetExecutedContractAddresses(suite.Ctx, customwasmtypes.ExecutedContracts{
-		ContractAddresses: []string{"terra1mdpvgjc8jmv60a4x68nggsh9w8uyv69sqls04a76m9med5hsqmwsse8sxa"},
+		ContractAddresses: []string{"furya1mdpvgjc8jmv60a4x68nggsh9w8uyv69sqls04a76m9med5hsqmwsse8sxa"},
 	})
 
 	// build a tx with a fee amount ...
@@ -220,8 +220,8 @@ func (suite *AnteTestSuite) TestPostHandler() {
 	txBuilder := suite.EncodingConfig.TxConfig.NewTxBuilder()
 	txBuilder.SetFeeAmount(txFee)
 	txBuilder.SetMsgs(&wasmtypes.MsgExecuteContract{
-		Sender:   "terra1zdpgj8am5nqqvht927k3etljyl6a52kwqup0je",
-		Contract: "terra1mdpvgjc8jmv60a4x68nggsh9w8uyv69sqls04a76m9med5hsqmwsse8sxa",
+		Sender:   "furya1zdpgj8am5nqqvht927k3etljyl6a52kwqup0je",
+		Contract: "furya1mdpvgjc8jmv60a4x68nggsh9w8uyv69sqls04a76m9med5hsqmwsse8sxa",
 		Msg:      nil,
 		Funds:    nil,
 	})
@@ -256,36 +256,36 @@ func (suite *AnteTestSuite) TestPostHandler() {
 			{
 				Type: "coin_spent",
 				Attributes: []abci.EventAttribute{
-					{Key: "spender", Value: "terra17xpfvakm2amg962yls6f84z3kell8c5lkaeqfa", Index: false},
+					{Key: "spender", Value: "furya17xpfvakm2amg962yls6f84z3kell8c5lkaeqfa", Index: false},
 					{Key: "amount", Value: "250uluna,125utoken", Index: false},
 				},
 			},
 			{
 				Type: "coin_received",
 				Attributes: []abci.EventAttribute{
-					{Key: "receiver", Value: "terra1zdpgj8am5nqqvht927k3etljyl6a52kwqup0je", Index: false},
+					{Key: "receiver", Value: "furya1zdpgj8am5nqqvht927k3etljyl6a52kwqup0je", Index: false},
 					{Key: "amount", Value: "250uluna,125utoken", Index: false},
 				},
 			},
 			{
 				Type: "transfer",
 				Attributes: []abci.EventAttribute{
-					{Key: "recipient", Value: "terra1zdpgj8am5nqqvht927k3etljyl6a52kwqup0je", Index: false},
-					{Key: "sender", Value: "terra17xpfvakm2amg962yls6f84z3kell8c5lkaeqfa", Index: false},
+					{Key: "recipient", Value: "furya1zdpgj8am5nqqvht927k3etljyl6a52kwqup0je", Index: false},
+					{Key: "sender", Value: "furya17xpfvakm2amg962yls6f84z3kell8c5lkaeqfa", Index: false},
 					{Key: "amount", Value: "250uluna,125utoken", Index: false},
 				},
 			},
 			{
 				Type: "message",
 				Attributes: []abci.EventAttribute{
-					{Key: "sender", Value: "terra17xpfvakm2amg962yls6f84z3kell8c5lkaeqfa", Index: false},
+					{Key: "sender", Value: "furya17xpfvakm2amg962yls6f84z3kell8c5lkaeqfa", Index: false},
 				},
 			},
 			{
 				Type: "juno.feeshare.v1.FeePayoutEvent",
 				Attributes: []abci.EventAttribute{
 					{Key: "fees_paid", Value: "[{\"denom\":\"uluna\",\"amount\":\"250\"},{\"denom\":\"utoken\",\"amount\":\"125\"}]", Index: false},
-					{Key: "withdraw_address", Value: "\"terra1zdpgj8am5nqqvht927k3etljyl6a52kwqup0je\"", Index: false},
+					{Key: "withdraw_address", Value: "\"furya1zdpgj8am5nqqvht927k3etljyl6a52kwqup0je\"", Index: false},
 				},
 			},
 		})
@@ -383,9 +383,9 @@ func (suite *AnteTestSuite) TestPostHandlerWithEmptySmartContractStore() {
 
 	// Register the feeshare contract...
 	suite.App.Keepers.FeeShareKeeper.SetFeeShare(suite.Ctx, types.FeeShare{
-		ContractAddress:   "terra1mdpvgjc8jmv60a4x68nggsh9w8uyv69sqls04a76m9med5hsqmwsse8sxa",
+		ContractAddress:   "furya1mdpvgjc8jmv60a4x68nggsh9w8uyv69sqls04a76m9med5hsqmwsse8sxa",
 		DeployerAddress:   "",
-		WithdrawerAddress: "terra1zdpgj8am5nqqvht927k3etljyl6a52kwqup0je",
+		WithdrawerAddress: "furya1zdpgj8am5nqqvht927k3etljyl6a52kwqup0je",
 	})
 
 	// build a tx with a fee amount ...
@@ -393,8 +393,8 @@ func (suite *AnteTestSuite) TestPostHandlerWithEmptySmartContractStore() {
 	txBuilder := suite.EncodingConfig.TxConfig.NewTxBuilder()
 	txBuilder.SetFeeAmount(txFee)
 	txBuilder.SetMsgs(&wasmtypes.MsgExecuteContract{
-		Sender:   "terra1zdpgj8am5nqqvht927k3etljyl6a52kwqup0je",
-		Contract: "terra1mdpvgjc8jmv60a4x68nggsh9w8uyv69sqls04a76m9med5hsqmwsse8sxa",
+		Sender:   "furya1zdpgj8am5nqqvht927k3etljyl6a52kwqup0je",
+		Contract: "furya1mdpvgjc8jmv60a4x68nggsh9w8uyv69sqls04a76m9med5hsqmwsse8sxa",
 		Msg:      nil,
 		Funds:    nil,
 	})
@@ -433,9 +433,9 @@ func (suite *AnteTestSuite) TestPostHandlerNoSmartContractExecuted() {
 
 	// Register the feeshare contract...
 	suite.App.Keepers.FeeShareKeeper.SetFeeShare(suite.Ctx, types.FeeShare{
-		ContractAddress:   "terra1mdpvgjc8jmv60a4x68nggsh9w8uyv69sqls04a76m9med5hsqmwsse8sxa",
+		ContractAddress:   "furya1mdpvgjc8jmv60a4x68nggsh9w8uyv69sqls04a76m9med5hsqmwsse8sxa",
 		DeployerAddress:   "",
-		WithdrawerAddress: "terra1zdpgj8am5nqqvht927k3etljyl6a52kwqup0je",
+		WithdrawerAddress: "furya1zdpgj8am5nqqvht927k3etljyl6a52kwqup0je",
 	})
 	// ... create the store key ...
 	suite.App.Keepers.WasmKeeper.SetExecutedContractAddresses(suite.Ctx, customwasmtypes.ExecutedContracts{
@@ -447,8 +447,8 @@ func (suite *AnteTestSuite) TestPostHandlerNoSmartContractExecuted() {
 	txBuilder := suite.EncodingConfig.TxConfig.NewTxBuilder()
 	txBuilder.SetFeeAmount(txFee)
 	txBuilder.SetMsgs(&wasmtypes.MsgExecuteContract{
-		Sender:   "terra1zdpgj8am5nqqvht927k3etljyl6a52kwqup0je",
-		Contract: "terra1mdpvgjc8jmv60a4x68nggsh9w8uyv69sqls04a76m9med5hsqmwsse8sxa",
+		Sender:   "furya1zdpgj8am5nqqvht927k3etljyl6a52kwqup0je",
+		Contract: "furya1mdpvgjc8jmv60a4x68nggsh9w8uyv69sqls04a76m9med5hsqmwsse8sxa",
 		Msg:      nil,
 		Funds:    nil,
 	})
@@ -487,9 +487,9 @@ func (suite *AnteTestSuite) TestPostHandlerWithInvalidContractAddrOnExecution() 
 
 	// Register the feeshare contract...
 	suite.App.Keepers.FeeShareKeeper.SetFeeShare(suite.Ctx, types.FeeShare{
-		ContractAddress:   "terra1mdpvgjc8jmv60a4x68nggsh9w8uyv69sqls04a76m9med5hsqmwsse8sxa",
+		ContractAddress:   "furya1mdpvgjc8jmv60a4x68nggsh9w8uyv69sqls04a76m9med5hsqmwsse8sxa",
 		DeployerAddress:   "",
-		WithdrawerAddress: "terra1zdpgj8am5nqqvht927k3etljyl6a52kwqup0je",
+		WithdrawerAddress: "furya1zdpgj8am5nqqvht927k3etljyl6a52kwqup0je",
 	})
 	// ... create the store key ...
 	suite.App.Keepers.WasmKeeper.SetExecutedContractAddresses(suite.Ctx, customwasmtypes.ExecutedContracts{

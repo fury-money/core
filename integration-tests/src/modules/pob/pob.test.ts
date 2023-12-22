@@ -1,6 +1,6 @@
-import { Coins, Fee, MsgSend } from "@terra-money/feather.js";
+import { Coins, Fee, MsgSend } from "@fury-money/feather.js";
 import { getMnemonics, getLCDClient, blockInclusion } from "../../helpers";
-import { MsgAuctionBid } from "@terra-money/feather.js/dist/core/pob/MsgAuctionBid";
+import { MsgAuctionBid } from "@fury-money/feather.js/dist/core/pob/MsgAuctionBid";
 
 describe("Proposer Builder Module (https://github.com/skip-mev/pob) ", () => {
     // Prepare environment clients, accounts and wallets
@@ -39,13 +39,13 @@ describe("Proposer Builder Module (https://github.com/skip-mev/pob) ", () => {
 
         // Query account info to sign the transactions offline 
         // to be included in the MsgAuctionBid
-        const accInfo = await LCD.chain1.auth.accountInfo(wallet.key.accAddress("terra"));
+        const accInfo = await LCD.chain1.auth.accountInfo(wallet.key.accAddress("furya"));
 
         // **First** message to be signed using **wallet**
         const firstMsg = MsgSend.fromData({
             "@type": "/cosmos.bank.v1beta1.MsgSend",
-            "from_address": accounts.pobMnemonic.accAddress("terra"),
-            "to_address": accounts.pobMnemonic1.accAddress("terra"),
+            "from_address": accounts.pobMnemonic.accAddress("furya"),
+            "to_address": accounts.pobMnemonic1.accAddress("furya"),
             "amount": [{ "denom": "uluna", "amount": "1" }]
         });
         const firstSignedSendTx = await wallet.createAndSignTx({
@@ -61,8 +61,8 @@ describe("Proposer Builder Module (https://github.com/skip-mev/pob) ", () => {
         // **Second** message to be signed using **wallet**
         const secondMsg = MsgSend.fromData({
             "@type": "/cosmos.bank.v1beta1.MsgSend",
-            "from_address": accounts.pobMnemonic.accAddress("terra"),
-            "to_address": accounts.pobMnemonic1.accAddress("terra"),
+            "from_address": accounts.pobMnemonic.accAddress("furya"),
+            "to_address": accounts.pobMnemonic1.accAddress("furya"),
             "amount": [{ "denom": "uluna", "amount": "2" }]
         });
         const secondSignedSendTx = await wallet.createAndSignTx({
@@ -84,7 +84,7 @@ describe("Proposer Builder Module (https://github.com/skip-mev/pob) ", () => {
             msgs: [MsgAuctionBid.fromData({
                 "@type": "/pob.builder.v1.MsgAuctionBid",
                 bid: { amount: "100000", denom: "uluna" },
-                bidder: accounts.pobMnemonic1.accAddress("terra"),
+                bidder: accounts.pobMnemonic1.accAddress("furya"),
                 transactions: [secondSignedSendTx.toBytes(), firstSignedSendTx.toBytes()]
             })],
             memo: "Build block",

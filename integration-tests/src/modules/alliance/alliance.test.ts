@@ -1,7 +1,7 @@
 import { getLCDClient, getMnemonics, blockInclusion, votingPeriod } from "../../helpers";
-import { Coin, MsgTransfer, MsgCreateAlliance, Coins, MsgVote, Fee, MsgAllianceDelegate, MsgClaimDelegationRewards, MsgAllianceUndelegate, MsgDeleteAlliance, MsgSubmitProposal } from "@terra-money/feather.js";
-import { VoteOption } from "@terra-money/terra.proto/cosmos/gov/v1beta1/gov";
-import { Height } from "@terra-money/feather.js/dist/core/ibc/core/client/Height";
+import { Coin, MsgTransfer, MsgCreateAlliance, Coins, MsgVote, Fee, MsgAllianceDelegate, MsgClaimDelegationRewards, MsgAllianceUndelegate, MsgDeleteAlliance, MsgSubmitProposal } from "@fury-money/feather.js";
+import { VoteOption } from "@fury-money/furya.proto/cosmos/gov/v1beta1/gov";
+import { Height } from "@fury-money/feather.js/dist/core/ibc/core/client/Height";
 
 describe("Alliance Module (https://github.com/terra-money/alliance/tree/release/v0.3.x) ", () => {
     // Prepare environment clients, accounts and wallets
@@ -9,9 +9,9 @@ describe("Alliance Module (https://github.com/terra-money/alliance/tree/release/
     const accounts = getMnemonics();
     const chain1Wallet = LCD.chain1.wallet(accounts.allianceMnemonic);
     const val2Wallet = LCD.chain2.wallet(accounts.val2);
-    const val2WalletAddress = val2Wallet.key.accAddress("terra");
-    const val2Address = val2Wallet.key.valAddress("terra");
-    const allianceAccountAddress = accounts.allianceMnemonic.accAddress("terra");
+    const val2WalletAddress = val2Wallet.key.accAddress("furya");
+    const val2Address = val2Wallet.key.valAddress("furya");
+    const allianceAccountAddress = accounts.allianceMnemonic.accAddress("furya");
     // This will be populated in the "Must create an alliance"
     let ibcCoin = Coin.fromString("1uluna");
 
@@ -78,7 +78,7 @@ describe("Alliance Module (https://github.com/terra-money/alliance/tree/release/
         try {
             const msgProposal = new MsgSubmitProposal(
                 [new MsgCreateAlliance(
-                    "terra10d07y265gmmuvt4z0w9aw880jnsr700juxf95n",
+                    "furya10d07y265gmmuvt4z0w9aw880jnsr700juxf95n",
                     ibcCoin.denom,
                     "100000000000000000",
                     "0",
@@ -289,7 +289,7 @@ describe("Alliance Module (https://github.com/terra-money/alliance/tree/release/
 
             const msgProposal = new MsgSubmitProposal(
                 [new MsgDeleteAlliance(
-                    "terra10d07y265gmmuvt4z0w9aw880jnsr700juxf95n",
+                    "furya10d07y265gmmuvt4z0w9aw880jnsr700juxf95n",
                     ibcCoin.denom,
                 )],
                 Coins.fromString("1000000000uluna"),

@@ -11,8 +11,8 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/terra-money/core/v2/app"
-	bindings "github.com/terra-money/core/v2/x/tokenfactory/bindings/types"
+	"github.com/fury-money/core/v2/app"
+	bindings "github.com/fury-money/core/v2/x/tokenfactory/bindings/types"
 )
 
 func TestQuery(t *testing.T) {
@@ -139,7 +139,7 @@ type ChainResponse struct {
 	Data []byte `json:"data"`
 }
 
-func queryCustom(t *testing.T, ctx sdk.Context, app *app.TerraApp, contract sdk.AccAddress, request bindings.TokenQuery, response interface{}) error {
+func queryCustom(t *testing.T, ctx sdk.Context, app *app.FuryaApp, contract sdk.AccAddress, request bindings.TokenQuery, response interface{}) error {
 	t.Helper()
 	wrapped := bindings.TokenFactoryQuery{
 		Token: &request,

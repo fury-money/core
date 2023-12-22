@@ -6,11 +6,11 @@ import (
 
 	"github.com/stretchr/testify/suite"
 
-	app_test "github.com/terra-money/core/v2/app/app_test"
+	app_test "github.com/fury-money/core/v2/app/app_test"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/terra-money/core/v2/x/feeshare/types"
+	"github.com/fury-money/core/v2/x/feeshare/types"
 )
 
 type GenesisTestSuite struct {

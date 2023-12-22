@@ -1,5 +1,5 @@
 import { getMnemonics, getLCDClient, blockInclusion } from "../../helpers";
-import { ContinuousVestingAccount, Coins, MnemonicKey, MsgCreateVestingAccount, Coin } from "@terra-money/feather.js";
+import { ContinuousVestingAccount, Coins, MnemonicKey, MsgCreateVestingAccount, Coin } from "@fury-money/feather.js";
 import moment from "moment";
 
 describe("Auth Module (https://github.com/terra-money/cosmos-sdk/tree/release/v0.47.x/x/auth)", () => {
@@ -7,7 +7,7 @@ describe("Auth Module (https://github.com/terra-money/cosmos-sdk/tree/release/v0
     const LCD = getLCDClient();
     const accounts = getMnemonics();
     const wallet = LCD.chain1.wallet(accounts.genesisVesting1);
-    const vestAccAddr1 = accounts.genesisVesting1.accAddress("terra");
+    const vestAccAddr1 = accounts.genesisVesting1.accAddress("furya");
 
     test('Must contain the expected module params', async () => {
         // Query Auth module params
@@ -25,7 +25,7 @@ describe("Auth Module (https://github.com/terra-money/cosmos-sdk/tree/release/v0
 
     test('Must have vesting accounts created on genesis', async () => {
         // Query genesis vesting account info
-        const vestAccAddr = accounts.genesisVesting.accAddress("terra");
+        const vestAccAddr = accounts.genesisVesting.accAddress("furya");
         const vestAcc = (await LCD.chain1.auth.accountInfo(vestAccAddr)) as ContinuousVestingAccount;
 
         // Validate the instance of the object
@@ -62,7 +62,7 @@ describe("Auth Module (https://github.com/terra-money/cosmos-sdk/tree/release/v0
     });
 
     test('Must create a random vesting account', async () => {
-        const randomAccountAddress = new MnemonicKey().accAddress("terra");
+        const randomAccountAddress = new MnemonicKey().accAddress("furya");
         // Register a new vesting account
         let tx = await wallet.createAndSignTx({
             msgs: [new MsgCreateVestingAccount(

@@ -1,4 +1,4 @@
-import { LCDClient } from "@terra-money/feather.js";
+import { LCDClient } from "@fury-money/feather.js";
 
 export function getLCDClient() {
     return {
@@ -8,7 +8,7 @@ export function getLCDClient() {
                 chainID: "test-1",
                 gasPrices: "0.15uluna",
                 gasAdjustment: 1.5,
-                prefix: "terra"
+                prefix: "furya"
             }
         }),
         chain2: new LCDClient({
@@ -17,7 +17,7 @@ export function getLCDClient() {
                 chainID: "test-2",
                 gasPrices: "0.15uluna",
                 gasAdjustment: 1.5,
-                prefix: "terra"
+                prefix: "furya"
             }
         })
     }

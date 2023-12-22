@@ -58,7 +58,7 @@ func CreateUpgradeHandler(
 		params.AllowedClients = append(params.AllowedClients, ibcexported.Localhost)
 		clientKeeper.SetParams(ctx, params)
 
-		// READ: https://github.com/terra-money/core/issues/166
+		// READ: https://github.com/fury-money/core/issues/166
 		icacontrollerKeeper.SetParams(ctx, icacontrollertypes.DefaultParams())
 		vm, err := mm.RunMigrations(ctx, cfg, fromVM)
 		if err != nil {

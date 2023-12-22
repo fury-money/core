@@ -14,7 +14,7 @@ var (
 	VotingPeriod     = "15s"
 	MaxDepositPeriod = "10s"
 	Image            = ibc.DockerImage{
-		Repository: "terramoneycore",
+		Repository: "furyamoneycore",
 		Version:    "latest",
 		UidGid:     "1025:1025",
 	}
@@ -22,11 +22,11 @@ var (
 	IBCRelayerVersion = "main"
 	config            = ibc.ChainConfig{
 		Type:                   "cosmos",
-		Name:                   "terra",
+		Name:                   "furya",
 		ChainID:                "phoenix-1",
 		Images:                 []ibc.DockerImage{Image},
-		Bin:                    "terrad",
-		Bech32Prefix:           "terra",
+		Bin:                    "furyad",
+		Bech32Prefix:           "furya",
 		Denom:                  Denom,
 		CoinType:               "330",
 		GasPrices:              fmt.Sprintf("0%s", Denom),

@@ -2,10 +2,10 @@ package config
 
 const (
 	// AccountAddressPrefix is the prefix of bech32 encoded address
-	AccountAddressPrefix = "terra"
+	AccountAddressPrefix = "furya"
 
 	// AppName is the application name
-	AppName = "terra"
+	AppName = "furya"
 
 	// CoinType is the LUNA coin type as defined in SLIP44 (https://github.com/satoshilabs/slips/blob/master/slip-0044.md)
 	CoinType = 330

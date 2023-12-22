@@ -44,8 +44,8 @@ func GetInterchainSpecForPOB() *interchaintest.ChainSpec {
 	}...))
 
 	return &interchaintest.ChainSpec{
-		Name:          "terra",
-		ChainName:     "terra",
+		Name:          "furya",
+		ChainName:     "furya",
 		Version:       "latest",
 		ChainConfig:   updatedChainConfig,
 		NumValidators: &numVals,
@@ -55,7 +55,7 @@ func GetInterchainSpecForPOB() *interchaintest.ChainSpec {
 }
 
 func TestPOB(t *testing.T) {
-	sdk.GetConfig().SetBech32PrefixForAccount("terra", "terra")
+	sdk.GetConfig().SetBech32PrefixForAccount("furya", "furya")
 	s := integration.NewPOBIntegrationTestSuiteFromSpec(GetInterchainSpecForPOB())
 	s.WithDenom("uluna")
 

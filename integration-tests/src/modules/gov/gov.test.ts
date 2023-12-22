@@ -1,13 +1,13 @@
 import { getLCDClient, blockInclusion, votingPeriod, getMnemonics } from "../../helpers";
-import { Coins, MsgVote, Fee, MsgSubmitProposal, Proposal, Int } from "@terra-money/feather.js";
-import { ProposalStatus, VoteOption } from "@terra-money/terra.proto/cosmos/gov/v1beta1/gov";
+import { Coins, MsgVote, Fee, MsgSubmitProposal, Proposal, Int } from "@fury-money/feather.js";
+import { ProposalStatus, VoteOption } from "@fury-money/furya.proto/cosmos/gov/v1beta1/gov";
 
 describe("Governance Module (https://github.com/terra-money/cosmos-sdk/tree/release/v0.47.x/x/gov) ", () => {
     // Prepare environment clients, accounts and wallets
     const LCD = getLCDClient();
     const accounts = getMnemonics();
     const val2Wallet = LCD.chain2.wallet(accounts.val2);
-    const val2WalletAddress = val2Wallet.key.accAddress("terra");
+    const val2WalletAddress = val2Wallet.key.accAddress("furya");
     let proposalId = 0; // Will be populated on "Must submit a proposal on chain"
 
     test('Must contain the expected module params', async () => {

@@ -1,10 +1,10 @@
-import { Coin, Coins, MsgInstantiateContract, MsgStoreCode, MsgTransfer } from "@terra-money/feather.js";
-import { deriveIbcHooksSender } from "@terra-money/feather.js/dist/core/ibc-hooks";
+import { Coin, Coins, MsgInstantiateContract, MsgStoreCode, MsgTransfer } from "@fury-money/feather.js";
+import { deriveIbcHooksSender } from "@fury-money/feather.js/dist/core/ibc-hooks";
 import { ibcTransfer, getMnemonics, getLCDClient, blockInclusion } from "../../helpers";
 import fs from "fs";
 import path from 'path';
 import moment from "moment";
-// import { Height } from "@terra-money/feather.js/dist/core/ibc/core/client/Height";
+// import { Height } from "@fury-money/feather.js/dist/core/ibc/core/client/Height";
 
 describe("IbcHooks Module (github.com/cosmos/ibc-apps/modules/ibc-hooks/v7) ", () => {
     // Prepare the LCD and wallets. chain1Wallet is the one that will
@@ -14,8 +14,8 @@ describe("IbcHooks Module (github.com/cosmos/ibc-apps/modules/ibc-hooks/v7) ", (
     const accounts = getMnemonics();
     const chain1Wallet = LCD.chain1.wallet(accounts.ibcHooksMnemonic);
     const chain2Wallet = LCD.chain2.wallet(accounts.ibcHooksMnemonic);
-    const walletAddress = accounts.ibcHooksMnemonic.accAddress("terra");
-    const derivedHooksWalletAddress = deriveIbcHooksSender("channel-0", walletAddress, "terra");
+    const walletAddress = accounts.ibcHooksMnemonic.accAddress("furya");
+    const derivedHooksWalletAddress = deriveIbcHooksSender("channel-0", walletAddress, "furya");
     let contractAddress: string;
 
     // Read the counter contract, store on chain, 

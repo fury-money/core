@@ -6,8 +6,8 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
 
-	"github.com/terra-money/core/v2/app/config"
-	"github.com/terra-money/core/v2/x/tokenfactory/types"
+	"github.com/fury-money/core/v2/app/config"
+	"github.com/fury-money/core/v2/x/tokenfactory/types"
 )
 
 func (s *KeeperTestSuite) TestMsgCreateDenom() {

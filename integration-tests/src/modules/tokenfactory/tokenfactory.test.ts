@@ -1,15 +1,15 @@
-import { Coin, Coins, Fee, MnemonicKey, MsgBurn, MsgChangeAdmin, MsgCreateDenom, MsgInstantiateContract, MsgMint, MsgStoreCode, MsgSetBeforeSendHook, MsgSend } from "@terra-money/feather.js";
+import { Coin, Coins, Fee, MnemonicKey, MsgBurn, MsgChangeAdmin, MsgCreateDenom, MsgInstantiateContract, MsgMint, MsgStoreCode, MsgSetBeforeSendHook, MsgSend } from "@fury-money/feather.js";
 import { getMnemonics, getLCDClient, blockInclusion } from "../../helpers";
 import fs from "fs";
 import path from 'path';
 
-describe("TokenFactory Module (https://github.com/terra-money/core/tree/release/v2.7/x/tokenfactory) ", () => {
+describe("TokenFactory Module (https://github.com/fury-money/core/tree/release/v2.7/x/tokenfactory) ", () => {
     // Prepare environment clients, accounts and wallets
     const LCD = getLCDClient();
     const accounts = getMnemonics();
     const wallet = LCD.chain1.wallet(accounts.tokenFactoryMnemonic);
-    const tokenFactoryWalletAddr = accounts.tokenFactoryMnemonic.accAddress("terra");
-    const randomAccountAddr = new MnemonicKey().accAddress("terra");
+    const tokenFactoryWalletAddr = accounts.tokenFactoryMnemonic.accAddress("furya");
+    const randomAccountAddr = new MnemonicKey().accAddress("furya");
     let contractAddress: string;
     let subdenom = Math.random().toString(36).substring(7);
     let factoryDenom: string | undefined = undefined
@@ -111,7 +111,7 @@ describe("TokenFactory Module (https://github.com/terra-money/core/tree/release/
             "type": "coin_received",
             "attributes": [{
                 "key": "receiver",
-                "value": "terra1jv65s3grqf6v6jl3dp4t6c9t9rk99cd8pm7utl"
+                "value": "furya1jv65s3grqf6v6jl3dp4t6c9t9rk99cd8pm7utl"
             }, {
                 "key": "amount",
                 "value": "10000000uluna"
@@ -120,7 +120,7 @@ describe("TokenFactory Module (https://github.com/terra-money/core/tree/release/
             "type": "transfer",
             "attributes": [{
                 "key": "recipient",
-                "value": "terra1jv65s3grqf6v6jl3dp4t6c9t9rk99cd8pm7utl"
+                "value": "furya1jv65s3grqf6v6jl3dp4t6c9t9rk99cd8pm7utl"
             }, {
                 "key": "sender",
                 "value": tokenFactoryWalletAddr
@@ -179,7 +179,7 @@ describe("TokenFactory Module (https://github.com/terra-money/core/tree/release/
                 "type": "coin_received",
                 "attributes": [{
                     "key": "receiver",
-                    "value": "terra19ejy8n9qsectrf4semdp9cpknflld0j6my8d0p"
+                    "value": "furya19ejy8n9qsectrf4semdp9cpknflld0j6my8d0p"
                 }, {
                     "key": "amount",
                     "value": "1000000000" + factoryDenom
@@ -189,7 +189,7 @@ describe("TokenFactory Module (https://github.com/terra-money/core/tree/release/
                 "type": "coinbase",
                 "attributes": [{
                     "key": "minter",
-                    "value": "terra19ejy8n9qsectrf4semdp9cpknflld0j6my8d0p"
+                    "value": "furya19ejy8n9qsectrf4semdp9cpknflld0j6my8d0p"
                 }, {
                     "key": "amount",
                     "value": "1000000000" + factoryDenom
@@ -199,7 +199,7 @@ describe("TokenFactory Module (https://github.com/terra-money/core/tree/release/
                 "type": "coin_spent",
                 "attributes": [{
                     "key": "spender",
-                    "value": "terra19ejy8n9qsectrf4semdp9cpknflld0j6my8d0p"
+                    "value": "furya19ejy8n9qsectrf4semdp9cpknflld0j6my8d0p"
                 }, {
                     "key": "amount",
                     "value": "1000000000" + factoryDenom
@@ -222,7 +222,7 @@ describe("TokenFactory Module (https://github.com/terra-money/core/tree/release/
                     "value": tokenFactoryWalletAddr
                 }, {
                     "key": "sender",
-                    "value": "terra19ejy8n9qsectrf4semdp9cpknflld0j6my8d0p"
+                    "value": "furya19ejy8n9qsectrf4semdp9cpknflld0j6my8d0p"
                 }, {
                     "key": "amount",
                     "value": "1000000000" + factoryDenom
@@ -232,7 +232,7 @@ describe("TokenFactory Module (https://github.com/terra-money/core/tree/release/
                 "type": "message",
                 "attributes": [{
                     "key": "sender",
-                    "value": "terra19ejy8n9qsectrf4semdp9cpknflld0j6my8d0p"
+                    "value": "furya19ejy8n9qsectrf4semdp9cpknflld0j6my8d0p"
                 }]
             },
             {
@@ -290,7 +290,7 @@ describe("TokenFactory Module (https://github.com/terra-money/core/tree/release/
                 "type": "coin_received",
                 "attributes": [{
                     "key": "receiver",
-                    "value": "terra19ejy8n9qsectrf4semdp9cpknflld0j6my8d0p"
+                    "value": "furya19ejy8n9qsectrf4semdp9cpknflld0j6my8d0p"
                 }, {
                     "key": "amount",
                     "value": "500000000" + factoryDenom
@@ -299,7 +299,7 @@ describe("TokenFactory Module (https://github.com/terra-money/core/tree/release/
                 "type": "transfer",
                 "attributes": [{
                     "key": "recipient",
-                    "value": "terra19ejy8n9qsectrf4semdp9cpknflld0j6my8d0p"
+                    "value": "furya19ejy8n9qsectrf4semdp9cpknflld0j6my8d0p"
                 }, {
                     "key": "sender",
                     "value": tokenFactoryWalletAddr
@@ -318,7 +318,7 @@ describe("TokenFactory Module (https://github.com/terra-money/core/tree/release/
                 "type": "coin_spent",
                 "attributes": [{
                     "key": "spender",
-                    "value": "terra19ejy8n9qsectrf4semdp9cpknflld0j6my8d0p"
+                    "value": "furya19ejy8n9qsectrf4semdp9cpknflld0j6my8d0p"
                 }, {
                     "key": "amount",
                     "value": "500000000" + factoryDenom
@@ -327,7 +327,7 @@ describe("TokenFactory Module (https://github.com/terra-money/core/tree/release/
                 "type": "burn",
                 "attributes": [{
                     "key": "burner",
-                    "value": "terra19ejy8n9qsectrf4semdp9cpknflld0j6my8d0p"
+                    "value": "furya19ejy8n9qsectrf4semdp9cpknflld0j6my8d0p"
                 }, {
                     "key": "amount",
                     "value": "500000000" + factoryDenom

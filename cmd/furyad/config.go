@@ -5,8 +5,8 @@ import (
 	serverconfig "github.com/cosmos/cosmos-sdk/server/config"
 )
 
-// TerraAppConfig terra specify app config
-type TerraAppConfig struct {
+// FuryaAppConfig furya specify app config
+type FuryaAppConfig struct {
 	serverconfig.Config
 
 	WASMConfig wasmtypes.WasmConfig `mapstructure:"wasm"`
@@ -37,12 +37,12 @@ func initAppConfig() (string, interface{}) {
 
 	srvCfg.Rosetta.DenomToSuggest = "uluna"
 
-	terraAppConfig := TerraAppConfig{
+	furyaAppConfig := FuryaAppConfig{
 		Config:     *srvCfg,
 		WASMConfig: wasmtypes.DefaultWasmConfig(),
 	}
 
-	terraAppTemplate := serverconfig.DefaultConfigTemplate + wasmtypes.DefaultConfigTemplate()
+	furyaAppTemplate := serverconfig.DefaultConfigTemplate + wasmtypes.DefaultConfigTemplate()
 
-	return terraAppTemplate, terraAppConfig
+	return furyaAppTemplate, furyaAppConfig
 }

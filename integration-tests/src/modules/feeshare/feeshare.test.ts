@@ -1,15 +1,15 @@
 import { getMnemonics, blockInclusion, getLCDClient } from "../../helpers";
-import { Coins, Fee, MnemonicKey, MsgExecuteContract, MsgInstantiateContract, MsgRegisterFeeShare, MsgStoreCode } from "@terra-money/feather.js";
+import { Coins, Fee, MnemonicKey, MsgExecuteContract, MsgInstantiateContract, MsgRegisterFeeShare, MsgStoreCode } from "@fury-money/feather.js";
 import fs from "fs";
 import path from 'path';
 
-describe("Feeshare Module (https://github.com/terra-money/core/tree/release/v2.6/x/feeshare) ", () => {
+describe("Feeshare Module (https://github.com/fury-money/core/tree/release/v2.6/x/feeshare) ", () => {
     // Prepare environment clients, accounts and wallets
     const LCD = getLCDClient();
     const accounts = getMnemonics();
     const wallet = LCD.chain1.wallet(accounts.feeshareMnemonic);
-    const feeshareAccountAddress = accounts.feeshareMnemonic.accAddress("terra");
-    const randomAccountAddress = new MnemonicKey().accAddress("terra");
+    const feeshareAccountAddress = accounts.feeshareMnemonic.accAddress("furya");
+    const randomAccountAddress = new MnemonicKey().accAddress("furya");
     let contractAddress: string;
 
     // Read the reflect contract, store on chain, 
