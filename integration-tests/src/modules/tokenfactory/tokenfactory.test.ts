@@ -37,7 +37,7 @@ describe("TokenFactory Module (https://github.com/fury-money/core/tree/release/v
             tokenFactoryWalletAddr,
             codeId,
             {},
-            Coins.fromString("1uluna"),
+            Coins.fromString("1ufury"),
             "no100 contract " + Math.random(),
         );
 
@@ -61,7 +61,7 @@ describe("TokenFactory Module (https://github.com/fury-money/core/tree/release/v
                 "params": {
                     "denom_creation_fee": [{
                         "amount": "10000000",
-                        "denom": "uluna"
+                        "denom": "ufury"
                     }],
                     "denom_creation_gas_consume": "1000000"
                 }
@@ -105,7 +105,7 @@ describe("TokenFactory Module (https://github.com/fury-money/core/tree/release/v
                 "value": tokenFactoryWalletAddr
             }, {
                 "key": "amount",
-                "value": "10000000uluna"
+                "value": "10000000ufury"
             }]
         }, {
             "type": "coin_received",
@@ -114,7 +114,7 @@ describe("TokenFactory Module (https://github.com/fury-money/core/tree/release/v
                 "value": "furya1jv65s3grqf6v6jl3dp4t6c9t9rk99cd8pm7utl"
             }, {
                 "key": "amount",
-                "value": "10000000uluna"
+                "value": "10000000ufury"
             }]
         }, {
             "type": "transfer",
@@ -126,7 +126,7 @@ describe("TokenFactory Module (https://github.com/fury-money/core/tree/release/v
                 "value": tokenFactoryWalletAddr
             }, {
                 "key": "amount",
-                "value": "10000000uluna"
+                "value": "10000000ufury"
             }]
         }, {
             "type": "message",
@@ -260,7 +260,7 @@ describe("TokenFactory Module (https://github.com/fury-money/core/tree/release/v
                     ),
                 ],
                 chainID: "test-1",
-                fee: new Fee(100_000, new Coins({ uluna: 100_000 })),
+                fee: new Fee(100_000, new Coins({ ufury: 100_000 })),
             });
             let result = await LCD.chain1.tx.broadcastSync(tx, "test-1");
             await blockInclusion();
@@ -356,7 +356,7 @@ describe("TokenFactory Module (https://github.com/fury-money/core/tree/release/v
                         contractAddress,
                     ),
                 ],
-                fee: new Fee(100_000, new Coins({ uluna: 100_000 })),
+                fee: new Fee(100_000, new Coins({ ufury: 100_000 })),
                 chainID: "test-1",
             });
             let result = await LCD.chain1.tx.broadcastSync(tx, "test-1");
@@ -468,7 +468,7 @@ describe("TokenFactory Module (https://github.com/fury-money/core/tree/release/v
                         ),
                     ],
                     chainID: "test-1",
-                    fee: new Fee(100_000, new Coins({ uluna: 100_000 })),
+                    fee: new Fee(100_000, new Coins({ ufury: 100_000 })),
                 });
                 let result = await LCD.chain1.tx.broadcastSync(tx, "test-1");
                 await blockInclusion();
@@ -493,7 +493,7 @@ describe("TokenFactory Module (https://github.com/fury-money/core/tree/release/v
                         factoryDenom as string,
                     ),
                 ],
-                fee: new Fee(100_000, new Coins({ uluna: 100_000 })),
+                fee: new Fee(100_000, new Coins({ ufury: 100_000 })),
                 chainID: "test-1",
             });
             let result = await LCD.chain1.tx.broadcastSync(tx, "test-1");

@@ -20,12 +20,12 @@ describe("Proposer Builder Module (https://github.com/skip-mev/pob) ", () => {
                     "max_bundle_size": 2,
                     "min_bid_increment": {
                         "amount": "1",
-                        "denom": "uluna",
+                        "denom": "ufury",
                     },
                     "proposer_fee": "0.000000000000000000",
                     "reserve_fee": {
                         "amount": "1",
-                        "denom": "uluna",
+                        "denom": "ufury",
                     },
                 },
             });
@@ -46,7 +46,7 @@ describe("Proposer Builder Module (https://github.com/skip-mev/pob) ", () => {
             "@type": "/cosmos.bank.v1beta1.MsgSend",
             "from_address": accounts.pobMnemonic.accAddress("furya"),
             "to_address": accounts.pobMnemonic1.accAddress("furya"),
-            "amount": [{ "denom": "uluna", "amount": "1" }]
+            "amount": [{ "denom": "ufury", "amount": "1" }]
         });
         const firstSignedSendTx = await wallet.createAndSignTx({
             msgs: [firstMsg],
@@ -54,7 +54,7 @@ describe("Proposer Builder Module (https://github.com/skip-mev/pob) ", () => {
             chainID: "test-1",
             accountNumber: accInfo.getAccountNumber(),
             sequence: accInfo.getSequenceNumber() + 1,
-            fee: new Fee(100000, new Coins({ uluna: 100000 })),
+            fee: new Fee(100000, new Coins({ ufury: 100000 })),
             timeoutHeight: parseInt(blockHeight) + 20,
         });
 
@@ -63,7 +63,7 @@ describe("Proposer Builder Module (https://github.com/skip-mev/pob) ", () => {
             "@type": "/cosmos.bank.v1beta1.MsgSend",
             "from_address": accounts.pobMnemonic.accAddress("furya"),
             "to_address": accounts.pobMnemonic1.accAddress("furya"),
-            "amount": [{ "denom": "uluna", "amount": "2" }]
+            "amount": [{ "denom": "ufury", "amount": "2" }]
         });
         const secondSignedSendTx = await wallet.createAndSignTx({
             msgs: [secondMsg],
@@ -71,7 +71,7 @@ describe("Proposer Builder Module (https://github.com/skip-mev/pob) ", () => {
             chainID: "test-1",
             accountNumber: accInfo.getAccountNumber(),
             sequence: accInfo.getSequenceNumber(),
-            fee: new Fee(100000, new Coins({ uluna: 100000 })),
+            fee: new Fee(100000, new Coins({ ufury: 100000 })),
             timeoutHeight: parseInt(blockHeight) + 20,
         });
 
@@ -83,13 +83,13 @@ describe("Proposer Builder Module (https://github.com/skip-mev/pob) ", () => {
         let buildTx = await wallet11.createAndSignTx({
             msgs: [MsgAuctionBid.fromData({
                 "@type": "/pob.builder.v1.MsgAuctionBid",
-                bid: { amount: "100000", denom: "uluna" },
+                bid: { amount: "100000", denom: "ufury" },
                 bidder: accounts.pobMnemonic1.accAddress("furya"),
                 transactions: [secondSignedSendTx.toBytes(), firstSignedSendTx.toBytes()]
             })],
             memo: "Build block",
             chainID: "test-1",
-            fee: new Fee(100000, new Coins({ uluna: 100000 })),
+            fee: new Fee(100000, new Coins({ ufury: 100000 })),
             timeoutHeight: parseInt(blockHeight) + 20,
         });
         const result = await LCD.chain1.tx.broadcastSync(buildTx, "test-1");

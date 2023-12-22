@@ -27,7 +27,7 @@ func GetInterchainSpecForPOB() *interchaintest.ChainSpec {
 		},
 		{
 			Key:   "app_state.builder.params.reserve_fee.denom",
-			Value: "uluna",
+			Value: "ufury",
 		},
 		{
 			Key:   "app_state.builder.params.reserve_fee.amount",
@@ -35,7 +35,7 @@ func GetInterchainSpecForPOB() *interchaintest.ChainSpec {
 		},
 		{
 			Key:   "app_state.builder.params.min_bid_increment.denom",
-			Value: "uluna",
+			Value: "ufury",
 		},
 		{
 			Key:   "app_state.builder.params.min_bid_increment.amount",
@@ -57,7 +57,7 @@ func GetInterchainSpecForPOB() *interchaintest.ChainSpec {
 func TestPOB(t *testing.T) {
 	sdk.GetConfig().SetBech32PrefixForAccount("furya", "furya")
 	s := integration.NewPOBIntegrationTestSuiteFromSpec(GetInterchainSpecForPOB())
-	s.WithDenom("uluna")
+	s.WithDenom("ufury")
 
 	suite.Run(t, s)
 }

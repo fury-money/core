@@ -46,7 +46,7 @@ func CreateTestInput() (*app.FuryaApp, sdk.Context) {
 		simtestutil.EmptyAppOptions{},
 		wasmtypes.DefaultWasmConfig(),
 	)
-	ctx := furyaApp.BaseApp.NewContext(true, tmproto.Header{Height: 1, ChainID: "phoenix-1", Time: time.Now()})
+	ctx := furyaApp.BaseApp.NewContext(true, tmproto.Header{Height: 1, ChainID: "furya-1", Time: time.Now()})
 	err := furyaApp.Keepers.WasmKeeper.SetParams(ctx, wasmtypes.DefaultParams())
 	if err != nil {
 		panic(err)

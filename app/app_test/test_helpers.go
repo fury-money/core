@@ -80,7 +80,7 @@ func (s *AppTestSuite) Setup() {
 	err = s.App.Keepers.TokenFactoryKeeper.SetParams(s.Ctx, tokenfactorytypes.DefaultParams())
 	s.Require().NoError(err)
 
-	err = s.FundModule(authtypes.FeeCollectorName, sdk.NewCoins(sdk.NewCoin("uluna", sdk.NewInt(1000)), sdk.NewCoin("utoken", sdk.NewInt(500))))
+	err = s.FundModule(authtypes.FeeCollectorName, sdk.NewCoins(sdk.NewCoin("ufury", sdk.NewInt(1000)), sdk.NewCoin("utoken", sdk.NewInt(500))))
 	s.Require().NoError(err)
 
 	s.App.Keepers.DistrKeeper.SetFeePool(s.Ctx, distrtypes.InitialFeePool())
@@ -107,7 +107,7 @@ func (s *AppTestSuite) CreateRandomAccounts(numAccts int) []sdk.AccAddress {
 		pk := ed25519.GenPrivKey().PubKey()
 		testAddrs[i] = sdk.AccAddress(pk.Address())
 
-		err := s.FundAcc(testAddrs[i], sdk.NewCoins(sdk.NewInt64Coin("uluna", 100000000)))
+		err := s.FundAcc(testAddrs[i], sdk.NewCoins(sdk.NewInt64Coin("ufury", 100000000)))
 		s.Require().NoError(err)
 	}
 

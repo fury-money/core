@@ -98,7 +98,7 @@ func (suite *AnteTestSuite) TestGetWithdrawalAddressFromContract() {
 }
 
 func (suite *AnteTestSuite) TestCalculateFee() {
-	feeCoins := sdk.NewCoins(sdk.NewCoin("uluna", sdk.NewInt(500)), sdk.NewCoin("utoken", sdk.NewInt(250)))
+	feeCoins := sdk.NewCoins(sdk.NewCoin("ufury", sdk.NewInt(500)), sdk.NewCoin("utoken", sdk.NewInt(250)))
 
 	testCases := []struct {
 		name               string
@@ -114,7 +114,7 @@ func (suite *AnteTestSuite) TestCalculateFee() {
 			sdk.NewDecWithPrec(100, 2),
 			1,
 			[]string{},
-			sdk.NewCoins(sdk.NewCoin("uluna", sdk.NewInt(500)), sdk.NewCoin("utoken", sdk.NewInt(250))),
+			sdk.NewCoins(sdk.NewCoin("ufury", sdk.NewInt(500)), sdk.NewCoin("utoken", sdk.NewInt(250))),
 		},
 		{
 			"100% fee / 2 contracts",
@@ -122,15 +122,15 @@ func (suite *AnteTestSuite) TestCalculateFee() {
 			sdk.NewDecWithPrec(100, 2),
 			2,
 			[]string{},
-			sdk.NewCoins(sdk.NewCoin("uluna", sdk.NewInt(250)), sdk.NewCoin("utoken", sdk.NewInt(125))),
+			sdk.NewCoins(sdk.NewCoin("ufury", sdk.NewInt(250)), sdk.NewCoin("utoken", sdk.NewInt(125))),
 		},
 		{
 			"100% fee / 10 contracts / 1 allowed denom",
 			feeCoins,
 			sdk.NewDecWithPrec(100, 2),
 			10,
-			[]string{"uluna"},
-			sdk.NewCoins(sdk.NewCoin("uluna", sdk.NewInt(50))),
+			[]string{"ufury"},
+			sdk.NewCoins(sdk.NewCoin("ufury", sdk.NewInt(50))),
 		},
 		{
 			"67% fee / 7 contracts",
@@ -138,7 +138,7 @@ func (suite *AnteTestSuite) TestCalculateFee() {
 			sdk.NewDecWithPrec(67, 2),
 			7,
 			[]string{},
-			sdk.NewCoins(sdk.NewCoin("uluna", sdk.NewInt(48)), sdk.NewCoin("utoken", sdk.NewInt(24))),
+			sdk.NewCoins(sdk.NewCoin("ufury", sdk.NewInt(48)), sdk.NewCoin("utoken", sdk.NewInt(24))),
 		},
 		{
 			"50% fee / 1 contracts / 1 allowed denom",
@@ -153,8 +153,8 @@ func (suite *AnteTestSuite) TestCalculateFee() {
 			feeCoins,
 			sdk.NewDecWithPrec(50, 2),
 			2,
-			[]string{"uluna", "utoken"},
-			sdk.NewCoins(sdk.NewCoin("uluna", sdk.NewInt(125)), sdk.NewCoin("utoken", sdk.NewInt(62))),
+			[]string{"ufury", "utoken"},
+			sdk.NewCoins(sdk.NewCoin("ufury", sdk.NewInt(125)), sdk.NewCoin("utoken", sdk.NewInt(62))),
 		},
 		{
 			"50% fee / 3 contracts",
@@ -162,7 +162,7 @@ func (suite *AnteTestSuite) TestCalculateFee() {
 			sdk.NewDecWithPrec(50, 2),
 			3,
 			[]string{},
-			sdk.NewCoins(sdk.NewCoin("uluna", sdk.NewInt(83)), sdk.NewCoin("utoken", sdk.NewInt(42))),
+			sdk.NewCoins(sdk.NewCoin("ufury", sdk.NewInt(83)), sdk.NewCoin("utoken", sdk.NewInt(42))),
 		},
 		{
 			"25% fee / 2 contracts",
@@ -170,7 +170,7 @@ func (suite *AnteTestSuite) TestCalculateFee() {
 			sdk.NewDecWithPrec(25, 2),
 			2,
 			[]string{},
-			sdk.NewCoins(sdk.NewCoin("uluna", sdk.NewInt(62)), sdk.NewCoin("utoken", sdk.NewInt(31))),
+			sdk.NewCoins(sdk.NewCoin("ufury", sdk.NewInt(62)), sdk.NewCoin("utoken", sdk.NewInt(31))),
 		},
 		{
 			"15% fee / 3 contracts / inexistent denom",
@@ -186,7 +186,7 @@ func (suite *AnteTestSuite) TestCalculateFee() {
 			sdk.NewDecWithPrec(1, 2),
 			2,
 			[]string{},
-			sdk.NewCoins(sdk.NewCoin("uluna", sdk.NewInt(2)), sdk.NewCoin("utoken", sdk.NewInt(1))),
+			sdk.NewCoins(sdk.NewCoin("ufury", sdk.NewInt(2)), sdk.NewCoin("utoken", sdk.NewInt(1))),
 		},
 	}
 
@@ -216,7 +216,7 @@ func (suite *AnteTestSuite) TestPostHandler() {
 	})
 
 	// build a tx with a fee amount ...
-	txFee := sdk.NewCoins(sdk.NewCoin("uluna", sdk.NewInt(500)), sdk.NewCoin("utoken", sdk.NewInt(250)))
+	txFee := sdk.NewCoins(sdk.NewCoin("ufury", sdk.NewInt(500)), sdk.NewCoin("utoken", sdk.NewInt(250)))
 	txBuilder := suite.EncodingConfig.TxConfig.NewTxBuilder()
 	txBuilder.SetFeeAmount(txFee)
 	txBuilder.SetMsgs(&wasmtypes.MsgExecuteContract{
@@ -257,14 +257,14 @@ func (suite *AnteTestSuite) TestPostHandler() {
 				Type: "coin_spent",
 				Attributes: []abci.EventAttribute{
 					{Key: "spender", Value: "furya17xpfvakm2amg962yls6f84z3kell8c5lkaeqfa", Index: false},
-					{Key: "amount", Value: "250uluna,125utoken", Index: false},
+					{Key: "amount", Value: "250ufury,125utoken", Index: false},
 				},
 			},
 			{
 				Type: "coin_received",
 				Attributes: []abci.EventAttribute{
 					{Key: "receiver", Value: "furya1zdpgj8am5nqqvht927k3etljyl6a52kwqup0je", Index: false},
-					{Key: "amount", Value: "250uluna,125utoken", Index: false},
+					{Key: "amount", Value: "250ufury,125utoken", Index: false},
 				},
 			},
 			{
@@ -272,7 +272,7 @@ func (suite *AnteTestSuite) TestPostHandler() {
 				Attributes: []abci.EventAttribute{
 					{Key: "recipient", Value: "furya1zdpgj8am5nqqvht927k3etljyl6a52kwqup0je", Index: false},
 					{Key: "sender", Value: "furya17xpfvakm2amg962yls6f84z3kell8c5lkaeqfa", Index: false},
-					{Key: "amount", Value: "250uluna,125utoken", Index: false},
+					{Key: "amount", Value: "250ufury,125utoken", Index: false},
 				},
 			},
 			{
@@ -284,7 +284,7 @@ func (suite *AnteTestSuite) TestPostHandler() {
 			{
 				Type: "juno.feeshare.v1.FeePayoutEvent",
 				Attributes: []abci.EventAttribute{
-					{Key: "fees_paid", Value: "[{\"denom\":\"uluna\",\"amount\":\"250\"},{\"denom\":\"utoken\",\"amount\":\"125\"}]", Index: false},
+					{Key: "fees_paid", Value: "[{\"denom\":\"ufury\",\"amount\":\"250\"},{\"denom\":\"utoken\",\"amount\":\"125\"}]", Index: false},
 					{Key: "withdraw_address", Value: "\"furya1zdpgj8am5nqqvht927k3etljyl6a52kwqup0je\"", Index: false},
 				},
 			},
@@ -307,7 +307,7 @@ func (suite *AnteTestSuite) TestDisabledPostHandle() {
 	suite.Require().NoError(err)
 
 	// build a tx with a fee amount ...
-	txFee := sdk.NewCoins(sdk.NewCoin("uluna", sdk.NewInt(500)), sdk.NewCoin("utoken", sdk.NewInt(250)))
+	txFee := sdk.NewCoins(sdk.NewCoin("ufury", sdk.NewInt(500)), sdk.NewCoin("utoken", sdk.NewInt(250)))
 	txBuilder := suite.EncodingConfig.TxConfig.NewTxBuilder()
 	txBuilder.SetFeeAmount(txFee)
 	txBuilder.SetMsgs(&wasmtypes.MsgExecuteContract{})
@@ -389,7 +389,7 @@ func (suite *AnteTestSuite) TestPostHandlerWithEmptySmartContractStore() {
 	})
 
 	// build a tx with a fee amount ...
-	txFee := sdk.NewCoins(sdk.NewCoin("uluna", sdk.NewInt(500)), sdk.NewCoin("utoken", sdk.NewInt(250)))
+	txFee := sdk.NewCoins(sdk.NewCoin("ufury", sdk.NewInt(500)), sdk.NewCoin("utoken", sdk.NewInt(250)))
 	txBuilder := suite.EncodingConfig.TxConfig.NewTxBuilder()
 	txBuilder.SetFeeAmount(txFee)
 	txBuilder.SetMsgs(&wasmtypes.MsgExecuteContract{
@@ -443,7 +443,7 @@ func (suite *AnteTestSuite) TestPostHandlerNoSmartContractExecuted() {
 	})
 
 	// build a tx with a fee amount ...
-	txFee := sdk.NewCoins(sdk.NewCoin("uluna", sdk.NewInt(500)), sdk.NewCoin("utoken", sdk.NewInt(250)))
+	txFee := sdk.NewCoins(sdk.NewCoin("ufury", sdk.NewInt(500)), sdk.NewCoin("utoken", sdk.NewInt(250)))
 	txBuilder := suite.EncodingConfig.TxConfig.NewTxBuilder()
 	txBuilder.SetFeeAmount(txFee)
 	txBuilder.SetMsgs(&wasmtypes.MsgExecuteContract{
@@ -497,7 +497,7 @@ func (suite *AnteTestSuite) TestPostHandlerWithInvalidContractAddrOnExecution() 
 	})
 
 	// build a tx with a fee amount ...
-	txFee := sdk.NewCoins(sdk.NewCoin("uluna", sdk.NewInt(500)), sdk.NewCoin("utoken", sdk.NewInt(250)))
+	txFee := sdk.NewCoins(sdk.NewCoin("ufury", sdk.NewInt(500)), sdk.NewCoin("utoken", sdk.NewInt(250)))
 	txBuilder := suite.EncodingConfig.TxConfig.NewTxBuilder()
 	txBuilder.SetFeeAmount(txFee)
 	txBuilder.SetMsgs(&wasmtypes.MsgExecuteContract{})

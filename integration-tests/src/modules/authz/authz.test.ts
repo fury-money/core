@@ -24,7 +24,7 @@ describe("Authz Module (https://github.com/terra-money/cosmos-sdk/tree/release/v
                 new AuthorizationGrant(
                     new StakeAuthorization(
                         AuthorizationType.AUTHORIZATION_TYPE_DELEGATE,
-                        Coin.fromString("1000000uluna"),
+                        Coin.fromString("1000000ufury"),
                     ),
                     moment().add(1, "hour").toDate(),
                 ),
@@ -72,7 +72,7 @@ describe("Authz Module (https://github.com/terra-money/cosmos-sdk/tree/release/v
                     [new MsgDelegate(
                         granterAddr,
                         val2Addr,
-                        Coin.fromString("1000000uluna"),
+                        Coin.fromString("1000000ufury"),
                     )]
                 )],
                 chainID: "test-2",
@@ -124,7 +124,7 @@ describe("Authz Module (https://github.com/terra-money/cosmos-sdk/tree/release/v
                         "value": "furya120rzk7n6cd2vufkmwrat34adqh0rgca9tkyfe5"
                     }, {
                         "key": "amount",
-                        "value": "1000000uluna"
+                        "value": "1000000ufury"
                     }, {
                         "key": "new_shares",
                         "value": "1000000.000000000000000000"

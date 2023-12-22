@@ -39,9 +39,9 @@ describe("Auth Module (https://github.com/terra-money/cosmos-sdk/tree/release/v0
             .toBeGreaterThan(moment().unix());
         // Validate the original vesting and delegated vesting
         expect(vestAcc.base_vesting_account.original_vesting)
-            .toStrictEqual(Coins.fromString("10000000000uluna"));
+            .toStrictEqual(Coins.fromString("10000000000ufury"));
         expect(vestAcc.base_vesting_account.delegated_vesting)
-            .toStrictEqual(Coins.fromString("10000000000uluna"));
+            .toStrictEqual(Coins.fromString("10000000000ufury"));
 
         // Validate other params from base account
         expect(vestAcc.base_vesting_account.base_account.address)
@@ -57,8 +57,8 @@ describe("Auth Module (https://github.com/terra-money/cosmos-sdk/tree/release/v0
         const vestAccBalance = await LCD.chain1.bank.balance(vestAccAddr);
 
         // Validate the unlocked balance is still available
-        expect(vestAccBalance[0].get("uluna"))
-            .toStrictEqual(Coin.fromString("990000000000uluna"));
+        expect(vestAccBalance[0].get("ufury"))
+            .toStrictEqual(Coin.fromString("990000000000ufury"));
     });
 
     test('Must create a random vesting account', async () => {
@@ -68,7 +68,7 @@ describe("Auth Module (https://github.com/terra-money/cosmos-sdk/tree/release/v0
             msgs: [new MsgCreateVestingAccount(
                 vestAccAddr1,
                 randomAccountAddress,
-                Coins.fromString("100uluna"),
+                Coins.fromString("100ufury"),
                 moment().add(1, "minute").unix(),
                 false,
             )],
@@ -99,7 +99,7 @@ describe("Auth Module (https://github.com/terra-money/cosmos-sdk/tree/release/v0
                     "value": vestAccAddr1
                 }, {
                     "key": "amount",
-                    "value": "100uluna"
+                    "value": "100ufury"
                 }]
             },
             {
@@ -109,7 +109,7 @@ describe("Auth Module (https://github.com/terra-money/cosmos-sdk/tree/release/v0
                     "value": randomAccountAddress
                 }, {
                     "key": "amount",
-                    "value": "100uluna"
+                    "value": "100ufury"
                 }]
             },
             {
@@ -122,7 +122,7 @@ describe("Auth Module (https://github.com/terra-money/cosmos-sdk/tree/release/v0
                     "value": vestAccAddr1
                 }, {
                     "key": "amount",
-                    "value": "100uluna"
+                    "value": "100ufury"
                 }]
             },
             {

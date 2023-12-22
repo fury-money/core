@@ -41,7 +41,7 @@ describe("IbcHooks Module (github.com/cosmos/ibc-apps/modules/ibc-hooks/v7) ", (
             walletAddress,
             codeId,
             { count: 0 },
-            Coins.fromString("1uluna"),
+            Coins.fromString("1ufury"),
             "counter contract " + Math.random(),
         );
 
@@ -65,7 +65,7 @@ describe("IbcHooks Module (github.com/cosmos/ibc-apps/modules/ibc-hooks/v7) ", (
                     new MsgTransfer(
                         "transfer",
                         "channel-0",
-                        Coin.fromString("1uluna"),
+                        Coin.fromString("1ufury"),
                         walletAddress,
                         contractAddress,
                         undefined,
@@ -75,7 +75,7 @@ describe("IbcHooks Module (github.com/cosmos/ibc-apps/modules/ibc-hooks/v7) ", (
                     new MsgTransfer(
                         "transfer",
                         "channel-0",
-                        Coin.fromString("1uluna"),
+                        Coin.fromString("1ufury"),
                         walletAddress,
                         contractAddress,
                         undefined,
@@ -93,7 +93,7 @@ describe("IbcHooks Module (github.com/cosmos/ibc-apps/modules/ibc-hooks/v7) ", (
                     "sender": [walletAddress],
                     "receiver": [contractAddress],
                     "amount": ["1"],
-                    "denom": ["uluna"],
+                    "denom": ["ufury"],
                     "memo": [`{"wasm":{"contract": "${contractAddress}" ,"msg": {"increment": {}}}}`]
                 });
             // query to validate the count is 1
@@ -127,7 +127,7 @@ describe("IbcHooks Module (github.com/cosmos/ibc-apps/modules/ibc-hooks/v7) ", (
                         new MsgTransfer(
                             "transfer",
                             "channel-0",
-                            Coin.fromString("1uluna"),
+                            Coin.fromString("1ufury"),
                             walletAddress,
                             derivedHooksWalletAddress,
                             undefined,
@@ -137,7 +137,7 @@ describe("IbcHooks Module (github.com/cosmos/ibc-apps/modules/ibc-hooks/v7) ", (
                         new MsgTransfer(
                             "transfer",
                             "channel-0",
-                            Coin.fromString("1uluna"),
+                            Coin.fromString("1ufury"),
                             walletAddress,
                             derivedHooksWalletAddress,
                             undefined,
@@ -173,7 +173,7 @@ describe("IbcHooks Module (github.com/cosmos/ibc-apps/modules/ibc-hooks/v7) ", (
                     new MsgTransfer(
                         "transfer",
                         "channel-0",
-                        Coin.fromString("1uluna"),
+                        Coin.fromString("1ufury"),
                         walletAddress,
                         derivedHooksWalletAddress,
                         undefined,
@@ -183,7 +183,7 @@ describe("IbcHooks Module (github.com/cosmos/ibc-apps/modules/ibc-hooks/v7) ", (
                     new MsgTransfer(
                         "transfer",
                         "channel-0",
-                        Coin.fromString("1uluna"),
+                        Coin.fromString("1ufury"),
                         walletAddress,
                         derivedHooksWalletAddress,
                         undefined,

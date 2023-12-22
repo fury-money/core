@@ -72,8 +72,8 @@ func CreateUpgradeHandler(
 		err = pobKeeper.SetParams(ctx, pobtypes.Params{
 			MaxBundleSize:          0,
 			EscrowAccountAddress:   pobtypes.DefaultEscrowAccountAddress,
-			ReserveFee:             sdk.NewCoin("uluna", sdk.NewInt(1)),
-			MinBidIncrement:        sdk.NewCoin("uluna", sdk.NewInt(1)),
+			ReserveFee:             sdk.NewCoin("ufury", sdk.NewInt(1)),
+			MinBidIncrement:        sdk.NewCoin("ufury", sdk.NewInt(1)),
 			FrontRunningProtection: pobtypes.DefaultFrontRunningProtection,
 			ProposerFee:            pobtypes.DefaultProposerFee,
 		})

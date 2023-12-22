@@ -65,7 +65,7 @@ To start developing on Furya, visit the [Developer's guide](https://docs.furya.m
 - [Furyain](https://github.com/fury-money/furyain): Furya’s all-in-one development environment, providing front-end and smart contract scaffolding for your dApp.
 - [LocalFurya](https://github.com/fury-money/LocalFurya): A zero-configuration testing environment containerized with Docker.
 - [Feather.js](https://github.com/fury-money/feather.js): JavaScript SDK.
-- [Faucet](https://faucet.furya.money): Get testnet Luna.
+- [Faucet](https://faucet.furya.money): Get testnet Fury.
 - [Finder](https://finder.furya.money): Block explorer.
 
 ## Set up a testing environment

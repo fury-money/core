@@ -152,7 +152,7 @@ describe("ICA Module (https://github.com/cosmos/ibc-go/tree/release/v7.3.x/modul
                     msgs: [new MsgTransfer(
                         "transfer",
                         "channel-0",
-                        Coin.fromString("100000000uluna"),
+                        Coin.fromString("100000000ufury"),
                         externalAccAddr,
                         intechainAccountAddr as string,
                         new Height(2, parseInt(blockHeight) + 100),

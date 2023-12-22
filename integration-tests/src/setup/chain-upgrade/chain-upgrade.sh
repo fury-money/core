@@ -4,7 +4,7 @@ OLD_VERSION=release/v2.8
 UPGRADE_HEIGHT=20
 CHAIN_ID=pisco-1
 CHAIN_HOME=$(pwd)/chain-upgrade-data
-DENOM=uluna
+DENOM=ufury
 SOFTWARE_UPGRADE_NAME="v2.9"
 GOV_PERIOD="5s"
 
@@ -47,8 +47,8 @@ VAL_ADDR_1=$($OLD_BINARY keys list emi --output=json | jq .[0].address -r)
 echo $WALLET_MNEMONIC_1 | $OLD_BINARY keys add wallet1 --home $CHAIN_HOME --recover --keyring-backend=test
 WALLET_ADDR_1=$($OLD_BINARY keys list emi --output=json | jq .[0].address -r)
 
-$OLD_BINARY genesis add-genesis-account $($OLD_BINARY --home $CHAIN_HOME keys show val1 --keyring-backend test -a) 100000000000uluna  --home $CHAIN_HOME
-$OLD_BINARY genesis gentx val1 1000000000uluna --home $CHAIN_HOME --chain-id $CHAIN_ID --keyring-backend test
+$OLD_BINARY genesis add-genesis-account $($OLD_BINARY --home $CHAIN_HOME keys show val1 --keyring-backend test -a) 100000000000ufury  --home $CHAIN_HOME
+$OLD_BINARY genesis gentx val1 1000000000ufury --home $CHAIN_HOME --chain-id $CHAIN_ID --keyring-backend test
 $OLD_BINARY genesis collect-gentxs --home $CHAIN_HOME
 
 sed -i -e "s/\"max_deposit_period\": \"172800s\"/\"max_deposit_period\": \"$GOV_PERIOD\"/g" $CHAIN_HOME/config/genesis.json

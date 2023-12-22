@@ -40,7 +40,7 @@ func (suite *GenesisTestSuite) TestFeeShareInitGenesis() {
 				Params: types.Params{
 					EnableFeeShare:  false,
 					DeveloperShares: types.DefaultDeveloperShares,
-					AllowedDenoms:   []string{"uluna"},
+					AllowedDenoms:   []string{"ufury"},
 				},
 			},
 			false,
@@ -51,7 +51,7 @@ func (suite *GenesisTestSuite) TestFeeShareInitGenesis() {
 				Params: types.Params{
 					EnableFeeShare:  true,
 					DeveloperShares: sdk.NewDecWithPrec(0, 2),
-					AllowedDenoms:   []string{"uluna"},
+					AllowedDenoms:   []string{"ufury"},
 				},
 			},
 			false,
@@ -62,7 +62,7 @@ func (suite *GenesisTestSuite) TestFeeShareInitGenesis() {
 				Params: types.Params{
 					EnableFeeShare:  true,
 					DeveloperShares: sdk.NewDecWithPrec(100, 2),
-					AllowedDenoms:   []string{"uluna"},
+					AllowedDenoms:   []string{"ufury"},
 				},
 			},
 			false,

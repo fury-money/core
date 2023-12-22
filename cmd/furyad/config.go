@@ -31,11 +31,11 @@ func initAppConfig() (string, interface{}) {
 	//   own app.toml to override, or use this default value.
 	//
 	// In simapp, we set the min gas prices to 0.
-	srvCfg.MinGasPrices = "0uluna"
+	srvCfg.MinGasPrices = "0ufury"
 	srvCfg.API.Enable = true
 	srvCfg.API.Swagger = true
 
-	srvCfg.Rosetta.DenomToSuggest = "uluna"
+	srvCfg.Rosetta.DenomToSuggest = "ufury"
 
 	furyaAppConfig := FuryaAppConfig{
 		Config:     *srvCfg,
